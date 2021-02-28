@@ -1,34 +1,30 @@
-package com.lunchapp.controller;
+package com.lunchapp.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lunchapp.model.JwtRequest;
-import com.lunchapp.model.JwtResponse;
-import com.lunchapp.security.JwtTokenUtil;
-import com.lunchapp.service.JwtUserDetailsService;
+import com.lunchapp.model.dto.JwtRequest;
+import com.lunchapp.model.dto.JwtResponse;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 public class JwtAuthenticationController {
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
 
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+	private final JwtTokenUtil jwtTokenUtil;
 
-	@Autowired
-	private JwtUserDetailsService userDetailsService;
+	private final JwtUserDetailsService userDetailsService;
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
