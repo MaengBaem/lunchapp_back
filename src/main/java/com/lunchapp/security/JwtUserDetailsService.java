@@ -1,6 +1,5 @@
 package com.lunchapp.security;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,9 @@ import lombok.RequiredArgsConstructor;
 public class JwtUserDetailsService implements UserDetailsService {
 
 	private final MemberRepository userRepository;
+	
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public CustomSecurityUser loadUserByUsername(String username) throws UsernameNotFoundException {
     	Member member = userRepository.findByUserName(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 		return new CustomSecurityUser(member);

@@ -20,16 +20,20 @@ public class CustomSecurityUser extends User {
 
 	private static final String ROLE_PREFIX = "ROLE_";
 
-	private Member member;
+	private String email;
+	private String name;
+	private GrantedAuthority authority;
 
 	public CustomSecurityUser(Member member) {
 		super(member.getUserName(), member.getPassword(), makeGrantedeAuth(member.getRole()));
-		this.member = member;
+		this.email = member.getEmail();
+		this.name = member.getUserName();
+		this.authority = new SimpleGrantedAuthority(ROLE_PREFIX + member.getRole().name());
 	}
 
 	private static List<GrantedAuthority> makeGrantedeAuth(ROLE role) {
 		List<GrantedAuthority> list = new ArrayList<>();
-		list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getValue()));
+		list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.name()));
 		return list;
 	}
 }
