@@ -12,5 +12,12 @@ class LunchappApplicationTests {
 	void contextLoads() {
 	}
 
-	
+	@Test
+	void 이넘_테스트() {
+		System.out.println(ROLE.valueOf("ADMIN"));
+		System.out.println(ROLE.ADMIN.name());// ADMIN
+		System.out.println(ROLE.ADMIN.toString()); // ADMIN
+		System.out.println(ROLE.ADMIN.getValue()); // 관리자
+	}
+
 }
