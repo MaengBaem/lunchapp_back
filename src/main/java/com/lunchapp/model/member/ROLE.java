@@ -1,4 +1,4 @@
-package com.lunchapp.model.enums;
+package com.lunchapp.model.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

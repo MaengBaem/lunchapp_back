@@ -1,4 +1,4 @@
-package com.lunchapp.security;
+package com.lunchapp.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+
+import com.lunchapp.security.JwtAuthenticationEntryPoint;
+import com.lunchapp.security.JwtRequestFilter;
 
 @Configuration
 @EnableWebSecurity

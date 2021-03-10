@@ -3,7 +3,7 @@ package com.lunchapp;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.lunchapp.model.enums.ROLE;
+import com.lunchapp.model.member.ROLE;
 
 @SpringBootTest
 class LunchappApplicationTests {

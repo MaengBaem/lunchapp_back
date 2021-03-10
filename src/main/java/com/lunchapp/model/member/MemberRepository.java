@@ -1,10 +1,8 @@
-package com.lunchapp.repository;
+package com.lunchapp.model.member;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.lunchapp.model.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 

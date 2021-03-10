@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.lunchapp.model.Member;
-import com.lunchapp.model.enums.ROLE;
-import com.lunchapp.repository.MemberRepository;
+import com.lunchapp.model.member.Member;
+import com.lunchapp.model.member.MemberRepository;
+import com.lunchapp.model.member.ROLE;
 
 @SpringBootTest
 public class UserTest {

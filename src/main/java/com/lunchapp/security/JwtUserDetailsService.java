@@ -4,8 +4,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.lunchapp.model.Member;
-import com.lunchapp.repository.MemberRepository;
+import com.lunchapp.model.member.Member;
+import com.lunchapp.model.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 

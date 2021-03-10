@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.lunchapp.model.Member;
-import com.lunchapp.model.enums.ROLE;
+import com.lunchapp.model.member.Member;
+import com.lunchapp.model.member.ROLE;
 
 import lombok.Getter;
 import lombok.Setter;
