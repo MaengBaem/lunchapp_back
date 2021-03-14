@@ -25,12 +25,12 @@ public class TodoItem extends BaseTimeEntity {
 	@ManyToOne
 	@JoinColumn(name="master")
 	private TodoList master;
-	
+
 	@ManyToOne
 	@JoinColumn(name="parent")
 	private TodoItem parent;
 	
-	@OneToMany(mappedBy = "children")
+	@OneToMany(mappedBy = "parent")
 	private List<TodoItem> children;
 	
 }

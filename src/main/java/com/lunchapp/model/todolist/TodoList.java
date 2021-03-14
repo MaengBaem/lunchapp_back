@@ -1,5 +1,6 @@
 package com.lunchapp.model.todolist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -28,12 +29,12 @@ public class TodoList extends BaseTimeEntity {
 	private Project project;
 
 	private String title;
-	
+
 	private String memo;
-	
+
 	private boolean isComplete;
-	
-	@OneToMany(mappedBy = "items")
-	private List<TodoItem> item;
+
+	@OneToMany(mappedBy = "master")
+	private List<TodoItem> items = new ArrayList<TodoItem>();;
 
 }
