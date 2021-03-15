@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LunchappApplication {
 
 	public static void main(String[] args) {
+		// 주석 처리
 		SpringApplication.run(LunchappApplication.class, args);
 	}
 
