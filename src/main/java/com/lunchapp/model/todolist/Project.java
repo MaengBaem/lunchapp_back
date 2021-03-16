@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 import com.lunchapp.model.BaseTimeEntity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,4 +36,15 @@ public class Project extends BaseTimeEntity {
 	private Company company;
 
 	private PSTATUS projectStatus;
+
+	@Builder
+	public Project(String title, String desc, Company company, PSTATUS status, LocalDateTime startDate,
+			LocalDateTime endDate) {
+		this.title = title;
+		this.desc = desc;
+		this.company = company;
+		this.projectStatus = status;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 }

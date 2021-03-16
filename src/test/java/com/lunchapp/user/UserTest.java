@@ -20,7 +20,7 @@ public class UserTest {
 	PasswordEncoder passwordEncoder;
 
 	@Test
-	void 유저_생성() {
+	void 어드민_생성() {
 		String pw = "admin";
 		String encryptPassword = passwordEncoder.encode(pw);
 		Member user = Member.builder().email("email@test.com").userName("admin").password(encryptPassword)
@@ -28,6 +28,18 @@ public class UserTest {
 		userRepository.save(user);
 
 		assertThat(user.getUserName()).isEqualTo("admin");
+		System.out.println(passwordEncoder.matches(pw, user.getPassword()));
+	}
+	
+	@Test
+	void 유저_생성() {
+		String pw = "user";
+		String encryptPassword = passwordEncoder.encode(pw);
+		Member user = Member.builder().email("user@test.com").userName("user").password(encryptPassword)
+				.role(ROLE.USER).build();
+		userRepository.save(user);
+
+		assertThat(user.getUserName()).isEqualTo("user");
 		System.out.println(passwordEncoder.matches(pw, user.getPassword()));
 	}
 }

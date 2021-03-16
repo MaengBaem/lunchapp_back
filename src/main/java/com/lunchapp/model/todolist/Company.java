@@ -14,6 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Company extends BaseTimeEntity {
+	
+	public Company(String name) {
+		this.name = name;
+	}
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
