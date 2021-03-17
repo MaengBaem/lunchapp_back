@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lunchapp.model.dto.ResponseDto;
 import com.lunchapp.model.dto.Result;
+import com.lunchapp.model.dto.todolist.TodoListResponseDto;
 import com.lunchapp.service.todolist.TodoService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,11 @@ public class TodoController {
     @GetMapping("/projects")
     public Result<List<ResponseDto>> getProjects() {
     	return todoService.getProjects();
+    }
+    
+    @PostMapping("/master-save")
+    public Result<TodoListResponseDto> saveMaster() {
+//		return todoService.saveMaster;
+    	return null;
     }
 }

@@ -7,4 +7,7 @@ import com.lunchapp.model.todolist.Project;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 
+	Project findByTitle(String title);
+
+
 }

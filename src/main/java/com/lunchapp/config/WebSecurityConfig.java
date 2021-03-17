@@ -53,9 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers("/todo")
-				.hasRole(ROLE.ADMIN.toString()).anyRequest().authenticated().and().exceptionHandling()
-				.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll()
+				.antMatchers("/todo/**").hasAnyRole(ROLE.USER.toString(), ROLE.ADMIN.toString()).antMatchers("/project/**")
+				.hasRole(ROLE.ADMIN.toString()).anyRequest().authenticated().and()
+				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

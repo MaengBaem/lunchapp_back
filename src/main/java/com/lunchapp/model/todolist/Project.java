@@ -10,8 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.lunchapp.model.BaseTimeEntity;
+import com.lunchapp.model.dto.todolist.ProjectDto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -37,14 +37,23 @@ public class Project extends BaseTimeEntity {
 
 	private PSTATUS projectStatus;
 
-	@Builder
-	public Project(String title, String desc, Company company, PSTATUS status, LocalDateTime startDate,
-			LocalDateTime endDate) {
-		this.title = title;
-		this.desc = desc;
+	public Project(ProjectDto dto) {
+		this.title = dto.getTitle();
+		this.desc = dto.getDesc();
+		this.projectStatus = PSTATUS.valueOf(dto.getStatus());
+//		this.startDate = dto.getStartDate() != null ? dto.getStartDate() : null;
+//		this.endDate = dto.getEndDate() != null ? dto.getEndDate() : null;
+	}
+	
+	public void setCompany(Company company) {
 		this.company = company;
-		this.projectStatus = status;
-		this.startDate = startDate;
-		this.endDate = endDate;
+	}
+
+	public void modify(ProjectDto dto) {
+		this.title = dto.getTitle();
+		this.desc = dto.getDesc();
+		this.projectStatus = PSTATUS.valueOf(dto.getStatus());
+//		this.startDate = dto.getStartDate() != null ? dto.getStartDate() : null;
+//		this.endDate = dto.getEndDate() != null ? dto.getEndDate() : null;
 	}
 }
