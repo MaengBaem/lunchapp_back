@@ -1,9 +1,16 @@
 package com.lunchapp.constants;
 
-public enum DBNAME {
-	PROJECT("프로젝트","project"),COMPANY("회사","company");
+import lombok.Getter;
 
-	DBNAME(String string, String string2) {
-		// TODO Auto-generated constructor stub
+@Getter
+public enum DBNAME {
+	PROJECT("프로젝트", "project"), COMPANY("회사", "company");
+
+	final private String krname;
+	final private String dbname;
+
+	DBNAME(String krname, String dbname) {
+		this.krname = krname;
+		this.dbname = dbname;
 	}
 }

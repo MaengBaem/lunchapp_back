@@ -1,4 +1,4 @@
-package com.lunchapp.model.todolist;
+package com.lunchapp.model.project;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

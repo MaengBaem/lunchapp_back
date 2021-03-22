@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.lunchapp.model.BaseTimeEntity;
+import com.lunchapp.model.project.Project;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

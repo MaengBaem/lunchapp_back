@@ -1,4 +1,4 @@
-package com.lunchapp.controller.todolist;
+package com.lunchapp.controller;
 
 import java.util.List;
 

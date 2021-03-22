@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lunchapp.exception.NoSearchObjectException;
 import com.lunchapp.model.dto.todolist.ProjectDto;
-import com.lunchapp.model.todolist.Company;
-import com.lunchapp.model.todolist.PSTATUS;
-import com.lunchapp.model.todolist.Project;
-import com.lunchapp.model.todolist.repository.CompanyRepository;
-import com.lunchapp.model.todolist.repository.ProjectRepository;
+import com.lunchapp.model.project.Company;
+import com.lunchapp.model.project.CompanyRepository;
+import com.lunchapp.model.project.PSTATUS;
+import com.lunchapp.model.project.Project;
+import com.lunchapp.model.project.ProjectRepository;
 
 @SpringBootTest
 public class ProjectTest {

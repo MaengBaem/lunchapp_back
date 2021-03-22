@@ -1,4 +1,4 @@
-package com.lunchapp.model.todolist;
+package com.lunchapp.model.project;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.lunchapp.model.BaseTimeEntity;
+import com.sun.istack.NotNull;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Company extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private String name;
 
 	public void changeName(String name) {

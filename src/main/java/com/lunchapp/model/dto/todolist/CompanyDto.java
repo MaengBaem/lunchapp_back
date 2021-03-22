@@ -1,17 +1,19 @@
 package com.lunchapp.model.dto.todolist;
 
-import com.lunchapp.model.todolist.Company;
+import com.lunchapp.model.project.Company;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public class CompanyDto {
 	
 	private String id;
-	private String name;
+	private String companyName;
 	
 	public CompanyDto(Company company) {
 		this.id = company.getId().toString();
-		this.name = company.getName();
+		this.companyName = company.getName();
 	}
 }

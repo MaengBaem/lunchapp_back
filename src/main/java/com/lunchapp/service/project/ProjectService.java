@@ -1,4 +1,4 @@
-package com.lunchapp.service.todolist.project;
+package com.lunchapp.service.project;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,10 +11,10 @@ import com.lunchapp.exception.DuplicateException;
 import com.lunchapp.exception.NoSearchObjectException;
 import com.lunchapp.model.dto.Result;
 import com.lunchapp.model.dto.todolist.ProjectDto;
-import com.lunchapp.model.todolist.Company;
-import com.lunchapp.model.todolist.Project;
-import com.lunchapp.model.todolist.repository.CompanyRepository;
-import com.lunchapp.model.todolist.repository.ProjectRepository;
+import com.lunchapp.model.project.Company;
+import com.lunchapp.model.project.CompanyRepository;
+import com.lunchapp.model.project.Project;
+import com.lunchapp.model.project.ProjectRepository;
 
 import lombok.RequiredArgsConstructor;
 

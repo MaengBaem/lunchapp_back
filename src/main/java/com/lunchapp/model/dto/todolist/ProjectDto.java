@@ -1,6 +1,6 @@
 package com.lunchapp.model.dto.todolist;
 
-import com.lunchapp.model.todolist.Project;
+import com.lunchapp.model.project.Project;
 
 import lombok.Data;
 

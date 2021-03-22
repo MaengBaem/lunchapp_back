@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.lunchapp.constants.Constants;
 import com.lunchapp.model.dto.ResponseDto;
 import com.lunchapp.model.dto.Result;
-import com.lunchapp.model.todolist.repository.ProjectRepository;
+import com.lunchapp.model.project.ProjectRepository;
 
 import lombok.RequiredArgsConstructor;
 
