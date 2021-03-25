@@ -1,4 +1,4 @@
-package com.lunchapp.model.dto.todolist;
+package com.lunchapp.model.dto.project;
 
 import com.lunchapp.model.project.Company;
 

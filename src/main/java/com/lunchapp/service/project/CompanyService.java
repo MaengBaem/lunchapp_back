@@ -11,7 +11,7 @@ import com.lunchapp.constants.DBNAME;
 import com.lunchapp.exception.DuplicateException;
 import com.lunchapp.exception.NoSearchObjectException;
 import com.lunchapp.model.dto.Result;
-import com.lunchapp.model.dto.todolist.CompanyDto;
+import com.lunchapp.model.dto.project.CompanyDto;
 import com.lunchapp.model.project.Company;
 import com.lunchapp.model.project.CompanyRepository;
 import com.lunchapp.model.project.Project;

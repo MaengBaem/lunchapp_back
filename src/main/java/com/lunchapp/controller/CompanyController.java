@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lunchapp.model.dto.Result;
-import com.lunchapp.model.dto.todolist.CompanyDto;
+import com.lunchapp.model.dto.project.CompanyDto;
 import com.lunchapp.service.project.CompanyService;
 
 import lombok.RequiredArgsConstructor;
