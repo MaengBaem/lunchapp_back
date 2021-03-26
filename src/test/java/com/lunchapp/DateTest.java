@@ -1,7 +1,5 @@
 package com.lunchapp;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +27,7 @@ public class DateTest {
 	@Test
 	void date_to_string() {
 		LocalDateTime today = LocalDateTime.now();
-		String test = DateUtil.dateToString(today);
+		String test = DateUtil.dateTimeToString(today);
 		System.out.println(test);
 	}
 

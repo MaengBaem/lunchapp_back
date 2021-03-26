@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.lunchapp.model.member.ROLE;
-import com.lunchapp.model.project.PSTATUS;
 
 @SpringBootTest
 class LunchappApplicationTests {

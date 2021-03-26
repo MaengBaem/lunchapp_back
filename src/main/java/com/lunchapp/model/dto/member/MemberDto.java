@@ -1,7 +1,11 @@
 package com.lunchapp.model.dto.member;
 
-import lombok.Data;
+import com.lunchapp.model.member.Member;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Data
 public class MemberDto {
 	private String id;
@@ -14,4 +18,13 @@ public class MemberDto {
 	
 	private String role;
 	
+	private String roleId;
+	
+	public MemberDto(Member member) {
+		this.id = member.getId().toString();
+		this.email = member.getEmail();
+		this.userName = member.getUserName();
+		this.role = member.getRole().getValue();
+		this.roleId = member.getRole().name();
+	}
 }

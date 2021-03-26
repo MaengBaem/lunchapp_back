@@ -22,12 +22,15 @@ public class CustomSecurityUser extends User {
 
 	private String email;
 	private String name;
+	private String id;
+	
 	private GrantedAuthority authority;
 
 	public CustomSecurityUser(Member member) {
 		super(member.getUserName(), member.getPassword(), makeGrantedeAuth(member.getRole()));
-		this.email = member.getEmail();
+		this.id = member.getId().toString();
 		this.name = member.getUserName();
+		this.email = member.getEmail();
 		this.authority = new SimpleGrantedAuthority(ROLE_PREFIX + member.getRole().name());
 	}
 

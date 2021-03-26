@@ -19,6 +19,7 @@ import com.lunchapp.model.project.ProjectRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 @Service
 public class CompanyService {
@@ -26,7 +27,6 @@ public class CompanyService {
 	private final CompanyRepository companyRepository;
 	private final ProjectRepository projectRepository;
 	
-	@Transactional(rollbackFor = Exception.class)
 	public Result<List<CompanyDto>> createCompany(CompanyDto dto) {
 		try {
 			checkDuplicateName(dto.getCompanyName());
@@ -38,7 +38,6 @@ public class CompanyService {
 		}
 	}
 
-	@Transactional(rollbackFor = Exception.class)
 	public Result<List<CompanyDto>> deleteCompany(CompanyDto dto) {
 		try {
 			Company company = companyRepository.findById(Long.valueOf(dto.getId()))
@@ -53,7 +52,6 @@ public class CompanyService {
 		}
 	}
 
-	@Transactional(rollbackFor = Exception.class)
 	public Result<List<CompanyDto>> modifyCompany(CompanyDto dto) {
 		try {
 			Company company = companyRepository.findById(Long.valueOf(dto.getId()))
@@ -65,6 +63,7 @@ public class CompanyService {
 		}
 	}
 
+	@Transactional(readOnly = true)
 	public Result<List<CompanyDto>> getAllCompany() {
 		List<CompanyDto> result = companyRepository.findAll().stream().map(CompanyDto::new)
 				.collect(Collectors.toList());

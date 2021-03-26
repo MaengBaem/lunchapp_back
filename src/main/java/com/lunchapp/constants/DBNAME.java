@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum DBNAME {
-	PROJECT("프로젝트", "project"), COMPANY("회사", "company");
+	PROJECT("프로젝트", "project"), COMPANY("회사", "company"), MEMBER("계정", "member");
 
 	final private String krname;
 	final private String dbname;

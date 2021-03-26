@@ -18,6 +18,14 @@ public class UserTest {
 	private MemberRepository userRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Test
+	void 중복테스트() {
+		Member member = userRepository.findByEmailOrUserNameAndIdNot("user@test.com", "user",
+				Long.valueOf(2));
+		System.out.println(member);
+	
+	}
 
 	@Test
 	void 어드민_생성() {

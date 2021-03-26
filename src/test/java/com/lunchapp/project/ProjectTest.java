@@ -1,7 +1,5 @@
 package com.lunchapp.project;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +7,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lunchapp.exception.NoSearchObjectException;
-import com.lunchapp.model.dto.project.ProjectDto;
 import com.lunchapp.model.project.Company;
 import com.lunchapp.model.project.CompanyRepository;
 import com.lunchapp.model.project.PSTATUS;
@@ -59,7 +56,7 @@ public class ProjectTest {
 		
 		Company companyB = companyRepository.findById(2L)
 				.orElseThrow(() -> new NoSearchObjectException("회사를 찾을 수 없음!"));
-		Project project2 = new Project("project2","project2 desc",companyB,PSTATUS.NOTSTARTED);
+//		Project project2 = new Project("project2","project2 desc",companyB,PSTATUS.NOTSTARTED);
 		
 		Project project3 = new Project("project3","project3 desc",companyB,PSTATUS.COMPLETE);
 		projectRepository.save(project3);
