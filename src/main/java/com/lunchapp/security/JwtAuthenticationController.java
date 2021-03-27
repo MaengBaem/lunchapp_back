@@ -1,5 +1,6 @@
 package com.lunchapp.security;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lunchapp.model.dto.JwtRequest;
 import com.lunchapp.model.dto.JwtResponse;
+import com.lunchapp.service.member.MemberLogService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,13 +26,18 @@ public class JwtAuthenticationController {
 
 	private final JwtUserDetailsService userDetailsService;
 
-	@PostMapping(path ="/authenticate")
+	private final MemberLogService memberLogService;
+
+	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-		final CustomSecurityUser userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final CustomSecurityUser userDetails = userDetailsService
+				.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
+
+		memberLogService.loginLog(userDetails);
 
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
@@ -43,5 +50,12 @@ public class JwtAuthenticationController {
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	@PostMapping("/authenticate/logout")
+	public ResponseEntity logOut(@RequestBody JwtRequest request) throws Exception {
+		memberLogService.logoutLog(request.getUserId());
+		  return new ResponseEntity(HttpStatus.OK);
 	}
 }

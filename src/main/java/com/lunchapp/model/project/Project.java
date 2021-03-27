@@ -44,7 +44,7 @@ public class Project extends BaseTimeEntity {
 	public Project(ProjectDto dto) {
 		this.title = dto.getTitle();
 		this.desc = dto.getDesc();
-		this.projectStatus = PSTATUS.valueOf(dto.getStatus());
+		this.projectStatus = PSTATUS.valueOf(dto.getStatusId());
 		this.startDate = dto.getStartDate() != null ? DateUtil.StringToDateTime(dto.getStartDate()) : null;
 		this.endDate = dto.getEndDate() != null ? DateUtil.StringToDateTime(dto.getEndDate()) : null;
 	}
