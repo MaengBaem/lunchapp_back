@@ -2,13 +2,14 @@ package com.lunchapp.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lunchapp.model.dto.Result;
 import com.lunchapp.model.dto.project.CompanyDto;
 import com.lunchapp.service.project.CompanyService;
 
@@ -22,22 +23,26 @@ public class CompanyController {
 	private final CompanyService companyService;
 
 	@PostMapping("/create")
-	public Result<List<CompanyDto>> createCompany(@RequestBody CompanyDto dto) {
-		return companyService.createCompany(dto);
+	public ResponseEntity<List<CompanyDto>> createCompany(@RequestBody CompanyDto dto) throws Exception {
+		List<CompanyDto> result = companyService.createCompany(dto);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@PostMapping("/modify")
-	public Result<List<CompanyDto>> modifyCompany(@RequestBody CompanyDto dto) {
-		return companyService.modifyCompany(dto);
+	public ResponseEntity<List<CompanyDto>> modifyCompany(@RequestBody CompanyDto dto) throws Exception {
+		List<CompanyDto> result = companyService.modifyCompany(dto);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@PostMapping("/delete")
-	public Result<List<CompanyDto>> deleteCompany(@RequestBody CompanyDto dto) {
-		return companyService.deleteCompany(dto);
+	public ResponseEntity<List<CompanyDto>> deleteCompany(@RequestBody CompanyDto dto) throws Exception {
+		List<CompanyDto> result = companyService.deleteCompany(dto);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/all")
-	public Result<List<CompanyDto>> getCompanyList() {
-		return companyService.getAllCompany();
+	public ResponseEntity<List<CompanyDto>> getCompanyList() throws Exception {
+		List<CompanyDto> result = companyService.getAllCompany();
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lunchapp.constants.Constants;
 import com.lunchapp.constants.DBNAME;
 import com.lunchapp.exception.DuplicateException;
 import com.lunchapp.exception.NoSearchObjectException;
-import com.lunchapp.model.dto.Result;
 import com.lunchapp.model.dto.project.CompanyDto;
 import com.lunchapp.model.project.Company;
 import com.lunchapp.model.project.CompanyRepository;
@@ -26,48 +24,54 @@ public class CompanyService {
 
 	private final CompanyRepository companyRepository;
 	private final ProjectRepository projectRepository;
-	
-	public Result<List<CompanyDto>> createCompany(CompanyDto dto) {
+
+	public List<CompanyDto> createCompany(CompanyDto dto) throws Exception {
 		try {
 			checkDuplicateName(dto.getCompanyName());
 			Company company = new Company(dto.getCompanyName());
 			companyRepository.save(company);
 			return getAllCompany();
+		} catch (DuplicateException e) {
+			throw new DuplicateException(e.getMessage());
 		} catch (Exception e) {
-			return new Result<List<CompanyDto>>(null, e.getMessage());
+			throw new Exception(e.getMessage());
 		}
 	}
 
-	public Result<List<CompanyDto>> deleteCompany(CompanyDto dto) {
+	public List<CompanyDto> deleteCompany(CompanyDto dto) throws Exception {
 		try {
 			Company company = companyRepository.findById(Long.valueOf(dto.getId()))
 					.orElseThrow(() -> new NoSearchObjectException(DBNAME.COMPANY.getKrname()));
 			List<Project> project = projectRepository.findByCompany(company);
-			if(project.size() > 0)
+			if (project.size() > 0)
 				throw new Exception("관련 프로젝트가 있어 삭제할 수 없습니다!");
 			companyRepository.delete(company);
 			return getAllCompany();
+		} catch (NoSearchObjectException e) {
+			throw new NoSearchObjectException(e.getMessage());
 		} catch (Exception e) {
-			return new Result<List<CompanyDto>>(null, e.getMessage());
+			throw new Exception(e.getMessage());
 		}
 	}
 
-	public Result<List<CompanyDto>> modifyCompany(CompanyDto dto) {
+	public List<CompanyDto> modifyCompany(CompanyDto dto) throws Exception {
 		try {
 			Company company = companyRepository.findById(Long.valueOf(dto.getId()))
 					.orElseThrow(() -> new NoSearchObjectException(DBNAME.COMPANY.getKrname()));
 			company.changeName(dto.getCompanyName());
 			return getAllCompany();
+		} catch (NoSearchObjectException e) {
+			throw new NoSearchObjectException(e.getMessage());
 		} catch (Exception e) {
-			return new Result<List<CompanyDto>>(null, e.getMessage());
+			throw new Exception(e.getMessage());
 		}
 	}
 
 	@Transactional(readOnly = true)
-	public Result<List<CompanyDto>> getAllCompany() {
+	public List<CompanyDto> getAllCompany() throws DuplicateException {
 		List<CompanyDto> result = companyRepository.findAll().stream().map(CompanyDto::new)
 				.collect(Collectors.toList());
-		return new Result<List<CompanyDto>>(result, Constants.RESULT_SUCCESS);
+		return result;
 	}
 
 	private void checkDuplicateName(String name) throws DuplicateException {

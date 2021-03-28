@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll()
 				.antMatchers("/todo/**").hasAnyRole(ROLE.USER.toString(), ROLE.ADMIN.toString()).antMatchers("/project/**")
+				.hasRole(ROLE.ADMIN.toString()).antMatchers("/member/**")
 				.hasRole(ROLE.ADMIN.toString()).anyRequest().authenticated().and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
