@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 
 import com.lunchapp.model.member.ROLE;
-import com.lunchapp.security.JwtAuthenticationEntryPoint;
 import com.lunchapp.security.JwtRequestFilter;
 
 @Configuration
@@ -25,8 +24,6 @@ import com.lunchapp.security.JwtRequestFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
 	@Autowired
 	private UserDetailsService jwtUserDetailsService;
@@ -57,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/todo/**").hasAnyRole(ROLE.USER.toString(), ROLE.ADMIN.toString()).antMatchers("/project/**")
 				.hasRole(ROLE.ADMIN.toString()).antMatchers("/member/**")
 				.hasRole(ROLE.ADMIN.toString()).anyRequest().authenticated().and()
-				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

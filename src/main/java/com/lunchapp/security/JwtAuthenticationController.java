@@ -1,5 +1,7 @@
 package com.lunchapp.security;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +39,7 @@ public class JwtAuthenticationController {
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
-		memberLogService.loginLog(userDetails);
+		memberLogService.loginLog(userDetails,token);
 
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
@@ -54,8 +56,9 @@ public class JwtAuthenticationController {
 
 	@SuppressWarnings("rawtypes")
 	@PostMapping("/authenticate/logout")
-	public ResponseEntity logOut(@RequestBody JwtRequest request) throws Exception {
-		memberLogService.logoutLog(request.getUserId());
-		  return new ResponseEntity(HttpStatus.OK);
+	public ResponseEntity logOut(@RequestBody JwtRequest jwtRequest, HttpServletRequest request) throws Exception {
+		String token = request.getHeader("Authorization").substring(7);
+		memberLogService.logoutLog(jwtRequest.getUserId(), token);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 }

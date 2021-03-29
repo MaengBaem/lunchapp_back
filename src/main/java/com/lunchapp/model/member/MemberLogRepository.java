@@ -6,4 +6,6 @@ public interface MemberLogRepository extends JpaRepository<MemberLog, Long> {
 
 	MemberLog findByMemberAndLogoutTimeIsNull(Member member);
 
+	MemberLog findByMemberAndTokenAndLogoutTimeIsNull(Member member, String token);
+
 }

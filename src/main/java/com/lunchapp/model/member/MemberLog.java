@@ -2,6 +2,7 @@ package com.lunchapp.model.member;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,10 +30,14 @@ public class MemberLog extends BaseTimeEntity{
 	private LocalDateTime loginTime;
 	
 	private LocalDateTime logoutTime;
+	
+	@Column(length = 4000)
+	private String token;
 
-	public MemberLog(Member member, LocalDateTime loginTime) {
+	public MemberLog(Member member, LocalDateTime loginTime, String token) {
 		this.member = member;
 		this.loginTime = loginTime;
+		this.token = token;
 	}
 	
 	public void logout(LocalDateTime logoutTime) {

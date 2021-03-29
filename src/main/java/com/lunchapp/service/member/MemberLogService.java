@@ -22,18 +22,18 @@ import lombok.RequiredArgsConstructor;
 public class MemberLogService {
 	private final MemberLogRepository memberLogRepository;
 	private final MemberRepository userRepository;
-	
-	public void loginLog(CustomSecurityUser userDetails) throws NoSearchObjectException {
+
+	public void loginLog(CustomSecurityUser userDetails, String token) throws NoSearchObjectException {
 		Member member = userRepository.findById(UUID.fromString(userDetails.getId()))
-				.orElseThrow(() ->new NoSearchObjectException(DBNAME.MEMBER.toString()));
-		MemberLog log = new MemberLog(member, LocalDateTime.now());
+				.orElseThrow(() -> new NoSearchObjectException(DBNAME.MEMBER.toString()));
+		MemberLog log = new MemberLog(member, LocalDateTime.now(),token);
 		memberLogRepository.save(log);
 	}
-	
-	public void logoutLog(String userId) throws NoSearchObjectException {
+
+	public void logoutLog(String userId, String token) throws NoSearchObjectException {
 		Member member = userRepository.findById(UUID.fromString(userId))
-				.orElseThrow(() ->new NoSearchObjectException(DBNAME.MEMBER.toString()));
-		MemberLog log = memberLogRepository.findByMemberAndLogoutTimeIsNull(member);
+				.orElseThrow(() -> new NoSearchObjectException(DBNAME.MEMBER.toString()));
+		MemberLog log = memberLogRepository.findByMemberAndTokenAndLogoutTimeIsNull(member, token);
 		log.logout(LocalDateTime.now());
 	}
 }
